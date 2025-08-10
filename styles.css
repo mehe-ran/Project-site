@@ -1,0 +1,133 @@
+/*  
+  Meheran's Portfolio Stylesheet
+  --------------------------------
+  Note: Values and selector order are preserved to keep the exact look.
+*/
+/* Design tokens / theme variables */
+:root{
+  --bg:#120e0b;           /* dark brown */
+  --panel:#1a1512;        /* panel */
+  --edge:#2f251d;         /* border */
+  --text:#f1ece6;         /* copy */
+  --muted:#c2b8ae;        /* muted */
+  --brass:#d6a063;        /* accent */
+  --bronze:#a37544;       /* accent 2 */
+  --radius:18px;
+  --container:1120px;
+  --space:22px;
+  --ring:0 0 0 4px rgba(214,160,99,.18);
+  --shadow:0 12px 32px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+  --speed:.7s;
+}
+/* Base reset & typography */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{display:flex;flex-direction:column;min-height:100vh;background:var(--bg);color:var(--text);
+     font:16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial;
+     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* Layered background & gentle sheen */
+.bg{position:fixed;inset:0;z-index:-1}
+.bg::before{content:"";position:absolute;inset:0;z-index:-1;background:
+    radial-gradient(1000px 360px at 15% -10%, rgba(180,130,90,.16), transparent 60%),
+    radial-gradient(900px 280px at 85% -15%, rgba(140,90,50,.14), transparent 65%),
+    linear-gradient(180deg,#1b1613 0%, #120e0b 46%, #0f0b08 100%);
+}
+.bg::after{content:"";position:absolute;inset:-20% -40%;z-index:-1;pointer-events:none;
+  background:linear-gradient(100deg, transparent 30%, rgba(255,235,210,.08) 50%, transparent 70%);
+  transform:translateX(-60%);animation:sheen 14s linear infinite}
+@keyframes sheen{to{transform:translateX(60%)}}
+
+/* Layout container & header */
+.container{max-width:var(--container);margin:0 auto;padding:24px}
+/* Sticky header (blurred) */
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(8px);
+  background:linear-gradient(to bottom, rgba(18,14,11,.9), rgba(18,14,11,.55) 60%, transparent);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  transition: transform .4s ease, opacity .3s ease, backdrop-filter .3s ease;
+  will-change: transform, opacity, backdrop-filter;
+  padding: 3px 0;
+}
+/* Header visibility states (controlled by JS) */
+header.is-hidden{ transform: translateY(-80%); opacity:0; backdrop-filter: blur(0px); }
+header.is-visible{ transform: translateY(0); opacity:1; backdrop-filter: blur(10px); }
+/* Top navigation layout */
+nav{display:flex;align-items:center;justify-content:space-between;gap:var(--space)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+/* Header chips/buttons container */
+.links{display:flex;gap:8px}
+.brand .mark{width:12px;height:12px;border-radius:50%;background:linear-gradient(180deg,#e9c69a,#845b34);box-shadow:0 0 10px rgba(214,160,99,.55)}
+.chip{border:1px solid var(--edge);background:linear-gradient(180deg,#251e19,#17120f);color:var(--text);
+      padding:8px 14px;border-radius:999px;cursor:pointer;line-height:1;display:inline-flex;align-items:center}
+.chip[aria-current="page"],.chip:hover{box-shadow:var(--ring)}
+
+/* Compact hero spacing */
+.hero{padding:4px 0 4px}
+.hero h1{margin:4px 0 6px;font-size:clamp(28px,4vw,44px);line-height:1.12}
+.hero p{color:var(--muted);max-width:780px}
+
+/* Simple 12-col grid */
+main{flex:1}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;align-items:start}
+.col-12{grid-column:span 12}
+.col-8{grid-column:span 8}
+.col-4{grid-column:span 4}
+@media (max-width:900px){.col-8,.col-4{grid-column:span 12}}
+
+/* Cards: metallic panels + pointer highlight */
+.card{background:linear-gradient(180deg, rgba(43,35,28,.94), rgba(26,21,18,.94));
+      border:1px solid var(--edge);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);
+      position:relative;overflow:hidden;contain:layout paint style;will-change:transform}
+.card h3{margin:0 0 8px}
+.card .muted{color:var(--muted)}
+.kicker { letter-spacing:.3px; font-size:13px; color:var(--muted); }
+.card::before{ /* pointer-follow highlight */
+  content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(600px 80px at var(--mx,50%) var(--my,0%), rgba(255,230,200,.16), transparent 60%);
+  mix-blend-mode:screen;opacity:.5;transition:opacity .25s ease}
+.card:hover::before{opacity:.7}
+
+/* Buttons: brass glow ripple */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;
+    border:1px solid var(--edge);color:var(--text);text-decoration:none;background:linear-gradient(180deg,#32271f,#1d1612);
+    position:relative;overflow:hidden;transition:transform .2s ease, box-shadow .25s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--ring)}
+.btn::after{content:"";position:absolute;left:var(--px,10%);top:50%;width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle at center, rgba(214,160,99,.35), transparent 60%);
+    transform:translate(-50%,-50%) scale(.1);opacity:0;transition:transform .5s ease, opacity .45s ease}
+.btn:hover::after{transform:translate(-50%,-50%) scale(1);opacity:.6}
+/* Ensure clear spacing between descriptions and buttons inside cards */
+.card .btn{ margin-top: 8px; }
+
+/* Hash-router page visibility */
+.page{display:none;animation:fadeUp var(--speed) cubic-bezier(.22,.61,.36,1)}
+.page.active{display:block}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+
+/* Scroll-reveal (IntersectionObserver) */
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .7s ease, transform .7s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* Footer */
+footer{border-top:1px solid rgba(255,255,255,.06);margin-top:auto}
+footer .container{padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+
+/* About page vertical centering */
+.about-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 340px); /* adjust offset for header/footer */
+}
+
+.about-wrapper .card p { font-size: 19px; }
+.about-wrapper .card h2 { font-size: 26px; }
+/* (Optional) inline logo styles */
+.logo { width:28px; height:28px; display:inline-block; }
+.logo svg { width:28px; height:28px; display:block; }
+.logo:hover { filter: drop-shadow(0 0 6px rgba(214,160,99,.45)); }

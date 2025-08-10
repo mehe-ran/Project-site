@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meheran's site</title>
+<meta name="description" content="Meheran Taraporewala — UOW CS student. Projects in AI/ML, apps, and games." />
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<header>
+  <div class="container">
+    <nav>
+      <h1 style="font-size:clamp(28px,4vw,44px);">Meheran Taraporewala</h1>
+      <div class="links" style="margin-left:auto;">
+        <a class="btn" href="#about" data-link aria-current="page">About</a>
+        <a class="btn" href="#projects" data-link>Projects</a>
+      </div>
+    </nav>
+    <div class="hero">
+  </div>
+</header>
+
+<main class="container">
+  <!-- About page (default) -->
+  <section id="about" class="page active">
+    <div class="about-wrapper">
+      <div class="grid">
+        <div class="col-12">
+          <article class="card reveal" data-delay="0">
+            <h2>About Me</h2>
+            <p class="kicker">University of Wollongong • Computer Science (Big Data and AI)</p>
+            <p>I’m Meheran, currently studying Computer Science at the University of Wollongong (graduating 2026). I focus on AI/ML, data science, app development, and a touch of game development. I enjoy building projects that are practical, efficient, and help me learn something new.</p>
+          </article>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:flex-start;margin:22px 0;">
+        <span class="chip">Python</span>
+        <span class="chip">SQL (PostgreSQL, MySQL)</span>
+        <span class="chip">Swift</span>
+        <span class="chip">HTML/CSS/JavaScript</span>
+        <span class="chip">JSON</span>
+        <span class="chip">XML</span>
+        <span class="chip">Ajax</span>
+        <span class="chip">C / C++ / C#</span>
+        <span class="chip">Bash</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects page (own page with animations) -->
+  <section id="projects" class="page">
+    <h2 style="margin:6px 0 8px">Projects</h2>
+
+    <!-- Completed -->
+    <div class="grid">
+      <div class="col-12"><h3 style="margin:8px 0 10px">Completed</h3></div>
+      <div class="col-12">
+        <div class="card reveal" data-tilt>
+          <h3 style="margin-top:0">Sales Predictor</h3>
+          <p class="muted">Python • scikit-learn • forecasting</p>
+          <p>End-to-end ML pipeline for predicting sales: data cleaning, feature engineering, model training, and evaluation.</p>
+          <p class="muted">Data cleaning • Feature engineering • Model training • Trend visualisation</p>
+          <a class="btn" href="https://github.com/mehe-ran/Sales-Predictor" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- In progress -->
+    <div class="grid" style="margin-top:12px">
+      <div class="col-12"><h3 style="margin:8px 0 10px">In progress</h3></div>
+
+      <div class="col-12">
+        <div class="card reveal" data-tilt>
+          <h3 style="margin-top:0">PeriodT — ML Period Tracker</h3>
+          <p class="muted">Python • PyTorch/Scikit-learn • privacy-first</p>
+          <p>Predicts cycle phases and offers insights with a focus on data minimisation and explainability. On-device inference planned.</p>
+          <p class="muted">AI-powered predictions • Privacy-first design • Planned on-device processing</p>
+          <a class="btn" href="#" aria-disabled="true">In Progress</a>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card reveal" data-tilt>
+          <h3 style="margin-top:0">TimeTogether — Timezone Companion</h3>
+          <p class="muted">SwiftUI • Firebase • UX</p>
+          <p>Helps long-distance couples compare schedules across time zones, plan calls, and coordinate events with a clean, customizable UI.</p>
+          <p class="muted">Timezone comparison • Custom themes • Firebase login • Responsive UI</p>
+          <a class="btn" href="#" aria-disabled="true">In Progress</a>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card reveal" data-tilt>
+          <h3 style="margin-top:0">ChessBot — AI Chess Game</h3>
+          <p class="muted">Python • PyTorch • GUI</p>
+          <p>Chess engine with neural move suggestions and adjustable search depth; desktop UI for play and analysis.</p>
+          <p class="muted">Neural move suggestions • Search depth slider • GUI for play & analysis</p>
+          <a class="btn" href="#" aria-disabled="true">In Progress</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <small class="muted">© <span id="y"></span> Meheran Taraporewala</small>
+  </div>
+</footer>
+
+<script src="./main.js"></script>
+</body>
+</html>
